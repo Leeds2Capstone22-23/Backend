@@ -4,7 +4,7 @@
     "version": 3,
     "sources": [
       {
-        "name": "default",
+        "name": "capstone",
         "kind": "postgres",
         "tables": [
           {
@@ -114,7 +114,7 @@
         ],
         "configuration": {
           "connection_info": {
-            "database_url": "postgres://postgres:postgrespassword@postgres:5432/postgres",
+            "database_url": "postgres://postgres:postgrespassword@postgres:5432/capstone",
             "isolation_level": "read-committed",
             "use_prepared_statements": false
           }

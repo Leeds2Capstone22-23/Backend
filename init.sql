@@ -1,6 +1,5 @@
-CREATE DATABASE default;
-\c default
-CREATE SCHEMA public;
+CREATE DATABASE capstone;
+\c capstone
 
 SET check_function_bodies = false;
 CREATE TABLE public.document_tag (
