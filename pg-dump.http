@@ -1,0 +1,9 @@
+POST http://localhost:8080/v1alpha1/pg_dump HTTP/1.1
+Content-Type: application/json
+X-Hasura-Role: admin
+
+{
+  "opts": ["-O", "-x", "--schema-only", "--schema", "public"],
+  "clean_output": true,
+  "source": "default"
+}
