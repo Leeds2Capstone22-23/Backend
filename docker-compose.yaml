@@ -4,7 +4,7 @@ services:
     image: postgres:12
     restart: always
     volumes:
-    - /nas/capstone/db_data:/var/lib/postgresql/data
+    - ./db_data:/var/lib/postgresql/data
     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       POSTGRES_PASSWORD: postgrespassword
@@ -28,4 +28,4 @@ services:
       ## uncomment next line to run console offline (i.e load console assets from server instead of CDN)
       # HASURA_GRAPHQL_CONSOLE_ASSETS_DIR: /srv/console-assets
       ## uncomment next line to set an admin secret
-      HASURA_GRAPHQL_ADMIN_SECRET: NGPzH@bFz^X@&#T6%uSXP4JjvjC8@!mE
+      HASURA_GRAPHQL_ADMIN_SECRET: adminsecret
