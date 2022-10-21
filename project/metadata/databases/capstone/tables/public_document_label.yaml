@@ -1,5 +1,5 @@
 table:
-  name: snippets
+  name: document_label
   schema: public
 object_relationships:
   - name: document

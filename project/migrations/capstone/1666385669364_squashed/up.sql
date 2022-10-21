@@ -1,4 +1,6 @@
 
+
+
 SET check_function_bodies = false;
 CREATE TABLE public.document_tag (
     id bigint NOT NULL,
@@ -78,3 +80,42 @@ ALTER TABLE "public"."documents" ALTER COLUMN "date_added" TYPE timestamp;
 alter table "public"."documents" rename column "date_added" to "time_added";
 
 alter table "public"."document_tag" drop constraint "document_tag_document_id_tag_id_key";
+
+alter table "public"."tags" rename to "labels";
+
+alter table "public"."labels" add column "color" integer
+ null;
+
+alter table "public"."document_tag" rename column "tag_id" to "label_id";
+
+alter table "public"."document_tag" rename to "document_label";
+
+alter table "public"."document_label" drop column "color" cascade;
+
+alter table "public"."snippets" rename column "tag_id" to "label_id";
+
+alter table "public"."snippets" rename column "offset" to "char_offset";
+
+alter table "public"."document_label" drop constraint "document_tag_document_id_fkey";
+
+alter table "public"."document_label" drop constraint "document_tag_tag_id_fkey";
+
+alter table "public"."document_label"
+  add constraint "document_label_document_id_fkey"
+  foreign key ("document_id")
+  references "public"."documents"
+  ("id") on update restrict on delete restrict;
+
+alter table "public"."document_label"
+  add constraint "document_label_label_id_fkey"
+  foreign key ("label_id")
+  references "public"."labels"
+  ("id") on update restrict on delete restrict;
+
+alter table "public"."snippets" drop constraint "snippets_tag_id_fkey";
+
+alter table "public"."snippets"
+  add constraint "snippets_label_id_fkey"
+  foreign key ("label_id")
+  references "public"."labels"
+  ("id") on update restrict on delete restrict;

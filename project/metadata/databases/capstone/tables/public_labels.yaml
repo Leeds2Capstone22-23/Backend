@@ -1,18 +1,18 @@
 table:
-  name: documents
+  name: labels
   schema: public
 array_relationships:
   - name: document_labels
     using:
       foreign_key_constraint_on:
-        column: document_id
+        column: label_id
         table:
           name: document_label
           schema: public
   - name: snippets
     using:
       foreign_key_constraint_on:
-        column: document_id
+        column: label_id
         table:
           name: snippets
           schema: public

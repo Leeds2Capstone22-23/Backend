@@ -7,4 +7,4 @@ object_relationships:
       foreign_key_constraint_on: document_id
   - name: tag
     using:
-      foreign_key_constraint_on: tag_id
+      foreign_key_constraint_on: label_id
