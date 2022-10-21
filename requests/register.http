@@ -1,7 +1,0 @@
-POST http://localhost:4308/register
-Content-Type: application/json
-
-{
-    "username": "john",
-    "password": "letmein"
-}
