@@ -1,6 +1,6 @@
 # API & Backend
 
-Using Hasura, creation of the postgres database and GraphQL API is done automatically through easy-to-use GUI interfaces. See documentation at [https://hasura.io/docs/latest/index/](https://hasura.io/docs/latest/index/).
+Using [Hasura](https://hasura.io/docs/latest/index/), creation of both the PostgreSQL database and GraphQL Schema are done automatically through an easy-to-use web UI. An API server can be created quickly using Docker Compose, and all configurations can be depolyed with a few commands.
 
 # Usage
 
@@ -10,8 +10,18 @@ Start docker containers for Hasura and Postgres (you may need to use `sudo`)
 docker-compose up -d
 ```
 
-Navigate to [http://localhost:8080/](http://localhost:8080/) to view the Hasura console
+[Migrations and Metadata](https://hasura.io/docs/latest/migrations-metadata-seeds/index/) for Hasura are stored under the `project` folder and are automatically applied on startup.
 
-If running for the **first time**, import Hasura metadata by clicking the settings gear wheel icon in the top right and then clicking `Import metadata`. Select the included `hasura_metadata` file.
+Then, to access the Hasura web UI, first [install the Hasura CLI](https://hasura.io/docs/latest/hasura-cli/install-hasura-cli/) and then, inside the `project` folder, run
 
-Now, the schema can be exported on the `DATA` tab, and the auto-generated GraphQL API can be explored on the `API` tab.
+```
+hasura console
+```
+
+## Note
+
+The reason the web UI should always be accessed through `hasura console` rather than using the endpoint directly is so that all migrations are saved for any changes you may have made within Hasura that you want pushed to version control. If the web endpoint is accessed directly, these migrations may not be properly tracked.
+
+# queries.gql
+
+The `queries.gql` file contains example queries for more complex operations.

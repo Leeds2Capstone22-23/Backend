@@ -1,0 +1,18 @@
+table:
+  name: tags
+  schema: public
+array_relationships:
+  - name: document_tags
+    using:
+      foreign_key_constraint_on:
+        column: tag_id
+        table:
+          name: document_tag
+          schema: public
+  - name: snippets
+    using:
+      foreign_key_constraint_on:
+        column: tag_id
+        table:
+          name: snippets
+          schema: public
