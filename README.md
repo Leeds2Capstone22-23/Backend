@@ -15,8 +15,10 @@ docker-compose up -d
 Then, to access the Hasura web UI, first [install the Hasura CLI](https://hasura.io/docs/latest/hasura-cli/install-hasura-cli/) and then, inside the `project` folder, run
 
 ```
-hasura console --endpoint http://localhost:8080
+hasura console
 ```
+
+You may need to wait for the Docker container to finish starting.
 
 ## Note
 
