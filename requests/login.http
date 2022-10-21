@@ -1,0 +1,2 @@
+GET http://localhost:4308/login
+Authorization: Basic am9objpsZXRtZWlu
