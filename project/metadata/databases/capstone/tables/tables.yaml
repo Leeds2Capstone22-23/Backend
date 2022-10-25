@@ -1,0 +1,4 @@
+- "!include public_document_label.yaml"
+- "!include public_documents.yaml"
+- "!include public_labels.yaml"
+- "!include public_snippets.yaml"

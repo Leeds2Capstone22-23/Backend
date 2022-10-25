@@ -1,0 +1,10 @@
+table:
+  name: snippets
+  schema: public
+object_relationships:
+  - name: document
+    using:
+      foreign_key_constraint_on: document_id
+  - name: label
+    using:
+      foreign_key_constraint_on: label_id
