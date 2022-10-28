@@ -24,6 +24,10 @@ You may need to wait for the Docker container to finish starting.
 
 The reason the web UI should always be accessed through `hasura console` rather than using the endpoint directly is so that all migrations are saved for any changes you may have made within Hasura that you want pushed to version control. If the web endpoint is accessed directly, these migrations may not be properly tracked.
 
+# DB Schema Diagram
+
+![diagram](https://user-images.githubusercontent.com/6487079/198708902-3999ccaa-1741-4275-a6cb-1324fe5347c7.png)
+
 # queries.gql
 
 The `queries.gql` file contains example queries for more complex operations.
