@@ -31,3 +31,7 @@ The reason the web UI should always be accessed through `hasura console` rather 
 # queries.gql
 
 The `queries.gql` file contains example queries for more complex operations.
+
+# Python client
+
+It is possible to interact with the Hasura GraphQL Engine via a Python client. Hasura's GitHub recommends using `sgqlc` which can be installed via `pip install sgqlc`. Once sgqlc is installed, run `demos/demo_python_client.py` which shows how to call Hasura via Python. Note the example uses hand-written GraphQL queries; sgqlc has some function to make this easier w/ Python classes also if you want.
