@@ -4,6 +4,13 @@ Using [Hasura](https://hasura.io/docs/latest/index/), creation of both the Postg
 
 # Usage
 
+Start authentication server locally (run inside the `auth` folder). Note that this service *should* be accessible from within the Hasura Docker container using the `extra_hosts` option added to the compose file, however this has only been tested on linux so far.
+
+```
+yarn          # only need to run once or if node_modules folder does not exist
+yarn start
+```
+
 Start docker containers for Hasura and Postgres (you may need to use `sudo`)
 
 ```
