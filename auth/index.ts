@@ -29,9 +29,10 @@ app.use(bodyParser.json());
  */
 app.post('/register', async (req, res) => {
   // extract username/password from Hasura Action
-  const { username, password } = req.body.input;
+  const { username, password } = req.body.input ?? { username: null, password: null };
   if (!username || !password) {
     res.sendStatus(400);
+    return;
   }
 
   // encrypt password
@@ -62,8 +63,12 @@ app.post('/register', async (req, res) => {
   try {
     const data = await client.request<TData>(mutation, variables);
     res.send(data.insert_users_one);
-  } catch (error) {
-    res.send(error);
+  } catch (err: any) {
+    if (err?.response?.errors instanceof Array && err.response.errors.some((e: any) => e?.extensions?.code === 'constraint-violation')) {
+      res.sendStatus(401);
+      return;
+    }
+    res.send(err);
   }
 });
 
@@ -91,9 +96,11 @@ app.get('/', async (req, res) => {
     [username, password] = auth;
   } catch (error) {
     res.status(400).send(error);
+    return;
   }
   if (!username || !password) {
     res.sendStatus(400);
+    return;
   }
 
   // gql query to lookup user by username
@@ -124,12 +131,15 @@ app.get('/', async (req, res) => {
       });
     } else {
       res.sendStatus(401); // credentials are incorrect, 401 unauthorized
+      return;
     }
   } catch (error) {
-    res.status(401).send(error); // send any errors with 401 unauthorized status
+    res.status(500).send(error);
   }
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`we authenticating on port ${port}`);
 });
+
+export = server;
