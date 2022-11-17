@@ -14,9 +14,9 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "build": "tsc",
     "start": "tsc && node dist/index.js",
-    "test": "jest"
+    "test": "tsc && jest",
+    "test-coverage": "tsc && jest --coverage --watchAll=False --ci"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
