@@ -1,29 +1,29 @@
-mutation merge_tags_globally($parent_tag_id: bigint!, $child_tag_id: bigint!) {
-  update_document_tag_many(updates: {where: {tag_id: {_eq: $child_tag_id}}, _set: {tag_id: $parent_tag_id}}) {
+mutation merge_labels_globally($parent_label_id: bigint!, $child_label_id: bigint!) {
+  update_document_label_many(updates: {where: {label_id: {_eq: $child_label_id}}, _set: {label_id: $parent_label_id}}) {
     affected_rows
   }
-  update_snippets_many(updates: {where: {tag_id: {_eq: $child_tag_id}}, _set: {tag_id: $parent_tag_id}}) {
+  update_snippets_many(updates: {where: {label_id: {_eq: $child_label_id}}, _set: {label_id: $parent_label_id}}) {
     affected_rows
   }
-  delete_document_tag(where: {tag_id: {_eq: $child_tag_id}}) {
-    affected_rows
-  }
-}
-
-mutation merge_tags_within_document($document_id: bigint!, $parent_tag_id: bigint!, $child_tag_id: bigint!) {
-  update_document_tag_many(updates: {where: {tag_id: {_eq: $child_tag_id}, document_id: {_eq: $document_id}}, _set: {tag_id: $parent_tag_id}}) {
-    affected_rows
-  }
-  update_snippets_many(updates: {where: {tag_id: {_eq: $child_tag_id}, document_id: {_eq: $document_id}}, _set: {tag_id: $parent_tag_id}}) {
-    affected_rows
-  }
-  delete_document_tag(where: {tag_id: {_eq: $child_tag_id}, document_id: {_eq: $document_id}}) {
+  delete_document_label(where: {label_id: {_eq: $child_label_id}}) {
     affected_rows
   }
 }
 
-query documents_with_tag($tag_id: bigint!) {
-  document_tag(where: {tag_id: {_eq: $tag_id}}, distinct_on: document_id) {
+mutation merge_labels_within_document($document_id: bigint!, $parent_label_id: bigint!, $child_label_id: bigint!) {
+  update_document_label_many(updates: {where: {label_id: {_eq: $child_label_id}, document_id: {_eq: $document_id}}, _set: {label_id: $parent_label_id}}) {
+    affected_rows
+  }
+  update_snippets_many(updates: {where: {label_id: {_eq: $child_label_id}, document_id: {_eq: $document_id}}, _set: {label_id: $parent_label_id}}) {
+    affected_rows
+  }
+  delete_document_label(where: {label_id: {_eq: $child_label_id}, document_id: {_eq: $document_id}}) {
+    affected_rows
+  }
+}
+
+query documents_with_label($label_id: bigint!) {
+  document_label(where: {label_id: {_eq: $label_id}}, distinct_on: document_id) {
     document {
       id
       title

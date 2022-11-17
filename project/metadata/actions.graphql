@@ -1,0 +1,12 @@
+type Mutation {
+  register_new_user(
+    username: String!
+    password: String!
+  ): RegisterUserOutput
+}
+
+type RegisterUserOutput {
+  id: bigint!
+  username: String!
+}
+
