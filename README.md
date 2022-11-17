@@ -71,7 +71,7 @@ To test the functionality of the `user` role from within the Hasura Console, unc
 
 ### REST Handler
 
-To register new users, the authentication webhook also includes the `POST /register` handler, which requires the usernamd and password to be provided in the request body. After verifying that the requested username is not already taken, and after encrypting the password, the new user's information is stored and the handler responds with the new user ID and username.
+To register new users, the authentication webhook also includes the `POST /register` handler, which requires the username and password to be provided in the request body. After verifying that the requested username is not already taken, and after encrypting the password, the new user's information is stored and the handler responds with the new user ID and username.
 
 ### Hasura Action
 
