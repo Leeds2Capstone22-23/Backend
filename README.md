@@ -4,6 +4,12 @@ Using [Hasura](https://hasura.io/docs/latest/index/), creation of both the Postg
 
 # Usage
 
+Please make sure `yarn` is installed by running
+
+```
+npm install -g yarn
+```
+
 Start authentication server locally (run inside the `auth` folder). Note that this service *should* be accessible from within the Hasura Docker container using the `extra_hosts` option added to the compose file, however this has only been tested on linux so far.
 
 ```
