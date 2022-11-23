@@ -1,0 +1,28 @@
+name: Code Coverage Check
+
+on:
+  push:
+    branches: [mainline]
+  pull_request:
+    branches: [mainline]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Start containers
+        run: docker-compose up -d
+      - name: Wait for containers to spawn
+        run: sleep 30s
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        id: coverage
+        with:
+          output: report-markdown
+          working-directory: auth
+          package-manager: yarn
+          test-script: yarn test-coverage
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: ${{ steps.coverage.outputs.report }}
+          annotations: none
