@@ -76,3 +76,15 @@ query {
 data = endpoint(query)
 print('\nSelect labels for user:')
 print(data)
+
+query_for_user_id = '''
+query MyQuery($_eq: String = "demo_python_client_username") {
+  users(where: {username: {_eq: $_eq}}) {
+    id
+  }
+}
+'''
+
+data = endpoint(query_for_user_id)
+print('\nUser id:')
+print(data)
