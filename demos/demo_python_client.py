@@ -2,7 +2,7 @@ from sgqlc.endpoint.http import HTTPEndpoint
 import base64
 
 
-class User:
+class User(object):
     def __init__(self, username, password):
         self.username = username
         self.password = password
@@ -16,6 +16,7 @@ class User:
 
 demo_user = User('demo_python_client_username', 'demo_python_client_password')
 
+print(f"[*] The demo user's name is {demo_user.username}")
 
 # for local development, get the POST endpoint from the Hasura interface
 # dont include Authorization header yet since we need to register the user
@@ -78,13 +79,18 @@ print('\nSelect labels for user:')
 print(data)
 
 query_for_user_id = '''
-query MyQuery($_eq: String = "demo_python_client_username") {
-  users(where: {username: {_eq: $_eq}}) {
+query GetUserId($username: String!) {
+  users(where: {username: {_eq: $username}}) {
     id
   }
 }
 '''
 
-data = endpoint(query_for_user_id)
+variables = {
+  'username': 'demo_python_client_username'
+}
+
+data = endpoint(query_for_user_id, variables)
 print('\nUser id:')
 print(data)
+
