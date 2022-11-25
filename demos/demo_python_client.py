@@ -87,7 +87,7 @@ query GetUserId($username: String!) {
 '''
 
 variables = {
-  'username': 'demo_python_client_username'
+  'username': demo_user.username
 }
 
 data = endpoint(query_for_user_id, variables)
