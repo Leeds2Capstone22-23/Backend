@@ -11,13 +11,11 @@ services:
     environment:
       - POSTGRES_PASSWORD
   graphql-engine:
-    image: hasura/graphql-engine:v2.13.0.cli-migrations-v3
+    image: hasura/graphql-engine:v2.13.2.cli-migrations-v3
     ports:
     - "8080:8080"
     depends_on:
     - "postgres"
-    extra_hosts:
-    - "host.docker.internal:host-gateway"
     restart: always
     environment:
       - HASURA_GRAPHQL_METADATA_DATABASE_URL
@@ -29,3 +27,10 @@ services:
     volumes:
     - ./project/migrations:/hasura-migrations
     - ./project/metadata:/hasura-metadata
+  leeds2-auth:
+    build: ./auth
+    ports:
+      - "4308:4308"
+    environment:
+      - GRAPHQL_ENDPOINT
+      - AUTH_PORT
