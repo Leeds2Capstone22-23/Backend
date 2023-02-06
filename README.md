@@ -2,7 +2,29 @@
 
 Using [Hasura](https://hasura.io/docs/latest/index/), creation of both the PostgreSQL database and GraphQL Schema are done automatically through an easy-to-use web UI. An API server can be created quickly using Docker Compose, and all configurations can be depolyed with a few commands.
 
-# Usage
+# Basic Usage
+
+The following will start Postgres, Hasura, and the auth server:
+
+```
+docker-compose build
+docker-compose up -d
+```
+
+Then, after [installing the Hasura CLI](https://hasura.io/docs/latest/hasura-cli/install-hasura-cli/) simply run
+
+```
+cd project
+hasura console
+```
+
+To stop the services, run
+
+```
+docker-compose down
+```
+
+# For Developing the Auth Server
 
 Please make sure `yarn` is installed by running
 
@@ -20,7 +42,7 @@ yarn start
 Start docker containers for Hasura and Postgres (you may need to use `sudo`)
 
 ```
-docker-compose up -d
+docker-compose -f docker-compose.yaml up -d
 ```
 
 [Migrations and Metadata](https://hasura.io/docs/latest/migrations-metadata-seeds/index/) for Hasura are stored under the `project` folder and are automatically applied on startup.

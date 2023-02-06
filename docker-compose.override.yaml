@@ -1,0 +1,10 @@
+version: '3.6'
+services:
+  graphql-engine:
+    environment:
+      - HASURA_GRAPHQL_AUTH_HOOK=http://leeds2-auth:4308
+  leeds2-auth:
+    build: ./auth
+    environment:
+      - GRAPHQL_ENDPOINT=http://graphql-engine:8080/v1/graphql
+      - AUTH_PORT
