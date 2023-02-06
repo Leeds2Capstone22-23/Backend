@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "tsc && node dist/index.js",
+    "build": "tsc",
     "test": "tsc && jest",
     "test-coverage": "tsc && jest --coverage --watchAll=False --ci"
   },
