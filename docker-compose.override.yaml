@@ -8,3 +8,4 @@ services:
     environment:
       - GRAPHQL_ENDPOINT=http://graphql-engine:8080/v1/graphql
       - AUTH_PORT
+      - HASURA_GRAPHQL_ADMIN_SECRET
