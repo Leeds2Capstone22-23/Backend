@@ -4,12 +4,14 @@ Using [Hasura](https://hasura.io/docs/latest/index/), creation of both the Postg
 
 # Basic Usage
 
-The following will start Postgres, Hasura, and the auth server:
+The following will start Postgres, Hasura, and the auth server (may need elevated privileges on some systems):
 
 ```
 docker-compose build
 docker-compose up -d
 ```
+
+If using Docker Compose as a plugin, replace `docker-compose` with `docker compose`.
 
 Then, after [installing the Hasura CLI](https://hasura.io/docs/latest/hasura-cli/install-hasura-cli/) simply run
 
