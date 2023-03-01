@@ -17,7 +17,8 @@
     "start": "tsc && node dist/index.js",
     "build": "tsc",
     "test": "tsc && jest",
-    "test-coverage": "tsc && jest --coverage --watchAll=False --ci"
+    "test-coverage": "tsc && jest --coverage --watchAll=False --ci",
+    "deploy-dev": "git push snpt-cumulus-dev HEAD:master"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
