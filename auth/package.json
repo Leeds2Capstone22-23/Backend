@@ -17,7 +17,9 @@
     "start": "tsc && node dist/index.js",
     "build": "tsc",
     "test": "tsc && jest",
-    "test-coverage": "tsc && jest --coverage --watchAll=False --ci"
+    "test-coverage": "tsc && jest --coverage --watchAll=False --ci",
+    "deploy-dev": "git push snpt-dev@198.59.83.84:/home/snpt-dev/Backend/backend.git HEAD:master",
+    "deploy-prod": "git push snpt-prod@198.59.83.20:/home/snpt-prod/Backend/backend.git HEAD:master"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
