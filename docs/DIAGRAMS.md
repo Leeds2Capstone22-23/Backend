@@ -1,22 +1,22 @@
 # Generating DB Diagrams
 
-A really easy way to do this is through the use of the program [DbVisualizer](dbvis.com).
+A really easy way to do this is through the use of the program [DbVisualizer](dbvis.com). Install DbVisualizer from their website to use it.
 
-## Before Using
+## Before you can use DbVisualizer
 
 You must ensure that your local Postgres instance is listening on port `5432`. The override file, `docker-compose.exposed.yaml`, opens the Postgres container on this port.
 
-To use it, run
+To run the backend with Postgres open, use the command
 
 ```
 docker-compose -f docker-compose.yaml -f docker-compose.override.yaml -f docker-compose.exposed.yaml up -d
 ```
 
-## Connect to the database in DbVisualizer
+## Connect to the database using DbVisualizer
 
 ### Import settings
 
-The `settings.jar` file (in this folder) contains pre-configured settings for the Postgres connection. Import it using `File > Import Settings...`
+The `settings.jar` file (in the `docs` folder) contains pre-configured settings for the Postgres connection. Import it using `File > Import Settings...`
 
 ### Manually
 
