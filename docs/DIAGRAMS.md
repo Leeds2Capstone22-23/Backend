@@ -14,11 +14,11 @@ docker-compose -f docker-compose.yaml -f docker-compose.override.yaml -f docker-
 
 ## Connect to the database using DbVisualizer
 
-### Import settings
+### Option 1: Import settings
 
 The `settings.jar` file (in the `docs` folder) contains pre-configured settings for the Postgres connection. Import it using `File > Import Settings...`
 
-### Manually
+### Option 2: Manually
 
 Add a PostgreSQL database connection, enter the credentials from the `.env` file, and connect to the local Postgres instance.
 
