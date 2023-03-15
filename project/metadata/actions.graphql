@@ -1,3 +1,13 @@
+type Query {
+  nlpHelloWorld: NlpHelloWorldOutput
+}
+
+type Query {
+  nlpLogin(
+    arg1: NlpInput!
+  ): NlpOutput
+}
+
 type Mutation {
   register_new_user(
     username: String!
@@ -5,8 +15,30 @@ type Mutation {
   ): RegisterUserOutput
 }
 
+input SampleInput {
+  username: String!
+  password: String!
+}
+
+input NlpInput {
+  username: String!
+  password: String!
+}
+
 type RegisterUserOutput {
   id: bigint!
   username: String!
+}
+
+type SampleOutput {
+  accessToken: String!
+}
+
+type NlpOutput {
+  authToken: String!
+}
+
+type NlpHelloWorldOutput {
+  message: String!
 }
 

@@ -1,4 +1,49 @@
 actions:
+  - name: nlpHelloWorld
+    definition:
+      kind: ""
+      handler: http://198.59.83.83
+      forward_client_headers: true
+      headers:
+        - name: Authorization
+          value: Token d7a66ff2a4179ee1adaacee7c381b9d885e14d93
+      request_transform:
+        method: GET
+        query_params: {}
+        request_headers:
+          add_headers: {}
+          remove_headers:
+            - content-type
+        template_engine: Kriti
+        url: '{{$base_url}}/search/hw/v1/'
+        version: 2
+  - name: nlpLogin
+    definition:
+      kind: ""
+      handler: http://198.59.83.83
+      request_transform:
+        body:
+          action: transform
+          template: |-
+            {
+              "username": {{$body.input.arg1.username}},
+              "password": {{$body.input.arg1.password}}
+            }
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/auth/token/login/'
+        version: 2
+      response_transform:
+        body:
+          action: transform
+          template: |-
+            {
+              "authToken": {{$body.auth_token}}
+            }
+        template_engine: Kriti
+        version: 2
+    comment: nlp_test_login
   - name: register_new_user
     definition:
       kind: synchronous
@@ -7,7 +52,12 @@ actions:
       - role: public
 custom_types:
   enums: []
-  input_objects: []
+  input_objects:
+    - name: SampleInput
+    - name: NlpInput
   objects:
     - name: RegisterUserOutput
+    - name: SampleOutput
+    - name: NlpOutput
+    - name: NlpHelloWorldOutput
   scalars: []
