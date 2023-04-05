@@ -1,12 +1,38 @@
 actions:
-  - name: nlpHelloWorld
+  - name: nlp_finished_jobs
     definition:
       kind: ""
-      handler: http://198.59.83.83
+      handler: http://{{HASURA_NLP_URL}}
+      headers:
+        - name: Authorization
+          value_from_env: HASURA_NLP_TOKEN
+      request_transform:
+        method: GET
+        query_params: {}
+        request_headers:
+          add_headers: {}
+          remove_headers:
+            - content-type
+        template_engine: Kriti
+        url: '{{$base_url}}/search/reddit/v1/finished/'
+        version: 2
+      response_transform:
+        body:
+          action: transform
+          template: |-
+            {
+              "response": {{$body}}
+            }
+        template_engine: Kriti
+        version: 2
+  - name: nlp_hello_world
+    definition:
+      kind: ""
+      handler: http://{{HASURA_NLP_URL}}
       forward_client_headers: true
       headers:
         - name: Authorization
-          value: Token d7a66ff2a4179ee1adaacee7c381b9d885e14d93
+          value_from_env: HASURA_NLP_TOKEN
       request_transform:
         method: GET
         query_params: {}
@@ -17,33 +43,77 @@ actions:
         template_engine: Kriti
         url: '{{$base_url}}/search/hw/v1/'
         version: 2
-  - name: nlpLogin
+  - name: nlp_job_status
     definition:
       kind: ""
-      handler: http://198.59.83.83
+      handler: http://{{HASURA_NLP_URL}}
+      headers:
+        - name: Authorization
+          value_from_env: HASURA_NLP_TOKEN
       request_transform:
         body:
           action: transform
           template: |-
             {
-              "username": {{$body.input.arg1.username}},
-              "password": {{$body.input.arg1.password}}
+              "job_name": "{{$body.input.job_name}}"
             }
-        method: POST
+        method: GET
         query_params: {}
+        request_headers:
+          add_headers: {}
+          remove_headers:
+            - content-type
         template_engine: Kriti
-        url: '{{$base_url}}/auth/token/login/'
+        url: '{{$base_url}}/search/reddit/v1/status/{{$body.input.job_name}}'
         version: 2
       response_transform:
         body:
           action: transform
           template: |-
             {
-              "authToken": {{$body.auth_token}}
+              "job_status": {{$body}}
             }
         template_engine: Kriti
         version: 2
-    comment: nlp_test_login
+  - name: nlp_login
+    definition:
+      kind: ""
+      handler: http://{{HASURA_NLP_URL}}
+      request_transform:
+        body:
+          action: transform
+          template: |-
+            {
+              "username": "{{$body.input.username}}",
+              "password": "{{$body.input.password}}"
+            }
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/auth/token/login/'
+        version: 2
+  - name: nlp_search
+    definition:
+      kind: ""
+      handler: http://{{HASURA_NLP_URL}}
+      headers:
+        - name: Authorization
+          value_from_env: HASURA_NLP_TOKEN
+      request_transform:
+        body:
+          action: transform
+          template: |-
+            {
+              "search_string": "{{$body.input.search_string}}",
+              "subreddits": "{{$body.input.subreddits}}",
+              "filter_keywords": "{{$body.input.filter_keywords}}",
+              "description": "{{$body.input.description}}"
+            }
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/search/reddit/v1/'
+        version: 2
   - name: register_new_user
     definition:
       kind: synchronous
@@ -52,12 +122,12 @@ actions:
       - role: public
 custom_types:
   enums: []
-  input_objects:
-    - name: SampleInput
-    - name: NlpInput
+  input_objects: []
   objects:
     - name: RegisterUserOutput
-    - name: SampleOutput
-    - name: NlpOutput
     - name: NlpHelloWorldOutput
+    - name: NlpLoginOutput
+    - name: NlpSearchOutput
+    - name: NlpJobStatusOutput
+    - name: NlpFinishedJobsOutput
   scalars: []
