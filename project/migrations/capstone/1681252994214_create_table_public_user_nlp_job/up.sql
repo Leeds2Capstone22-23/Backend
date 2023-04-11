@@ -1,0 +1,1 @@
+CREATE TABLE "public"."user_nlp_job" ("user_id" int8 NOT NULL, "job_id" text NOT NULL, "id" bigserial NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON UPDATE restrict ON DELETE restrict, UNIQUE ("user_id", "job_id"), UNIQUE ("id"));

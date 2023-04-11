@@ -2,4 +2,5 @@
 - "!include public_documents.yaml"
 - "!include public_labels.yaml"
 - "!include public_snippets.yaml"
+- "!include public_user_nlp_job.yaml"
 - "!include public_users.yaml"

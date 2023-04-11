@@ -23,6 +23,13 @@ array_relationships:
         table:
           name: snippets
           schema: public
+  - name: user_nlp_jobs
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_nlp_job
+          schema: public
 select_permissions:
   - role: public
     permission:

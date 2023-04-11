@@ -1,5 +1,7 @@
 type Query {
-  nlp_finished_jobs: NlpFinishedJobsOutput
+  nlp_finished_job(
+    job_name: String!
+  ): NlpFinishedJobOutput
 }
 
 type Query {
@@ -55,10 +57,14 @@ type NlpSearchOutput {
 }
 
 type NlpJobStatusOutput {
-  job_status: String!
+  job_name: String!
 }
 
 type NlpFinishedJobsOutput {
+  response: String!
+}
+
+type NlpFinishedJobOutput {
   response: String!
 }
 

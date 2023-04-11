@@ -1,5 +1,5 @@
 actions:
-  - name: nlp_finished_jobs
+  - name: nlp_finished_job
     definition:
       kind: ""
       handler: http://{{HASURA_NLP_URL}}
@@ -14,7 +14,7 @@ actions:
           remove_headers:
             - content-type
         template_engine: Kriti
-        url: '{{$base_url}}/search/reddit/v1/finished/'
+        url: '{{$base_url}}/search/reddit/v1/finished/{{$body.input.job_name}}'
         version: 2
       response_transform:
         body:
@@ -25,6 +25,8 @@ actions:
             }
         template_engine: Kriti
         version: 2
+    permissions:
+      - role: user
   - name: nlp_hello_world
     definition:
       kind: ""
@@ -66,15 +68,8 @@ actions:
         template_engine: Kriti
         url: '{{$base_url}}/search/reddit/v1/status/{{$body.input.job_name}}'
         version: 2
-      response_transform:
-        body:
-          action: transform
-          template: |-
-            {
-              "job_status": {{$body}}
-            }
-        template_engine: Kriti
-        version: 2
+    permissions:
+      - role: user
   - name: nlp_login
     definition:
       kind: ""
@@ -114,6 +109,8 @@ actions:
         template_engine: Kriti
         url: '{{$base_url}}/search/reddit/v1/'
         version: 2
+    permissions:
+      - role: user
   - name: register_new_user
     definition:
       kind: synchronous
@@ -130,4 +127,5 @@ custom_types:
     - name: NlpSearchOutput
     - name: NlpJobStatusOutput
     - name: NlpFinishedJobsOutput
+    - name: NlpFinishedJobOutput
   scalars: []
