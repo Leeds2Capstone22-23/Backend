@@ -36,6 +36,7 @@ insert_permissions:
         - document_id
         - label_id
         - length
+        - nlp_job_name
 select_permissions:
   - role: user
     permission:
@@ -45,6 +46,7 @@ select_permissions:
         - id
         - label_id
         - length
+        - nlp_job_name
         - user_id
       filter:
         user_id:
@@ -56,6 +58,7 @@ update_permissions:
         - char_offset
         - label_id
         - length
+        - nlp_job_name
       filter:
         _and:
           - user_id:
