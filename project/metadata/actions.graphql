@@ -1,3 +1,35 @@
+type Query {
+  nlp_finished_job(
+    job_name: String!
+  ): NlpFinishedJobOutput
+}
+
+type Query {
+  nlp_hello_world: NlpHelloWorldOutput
+}
+
+type Query {
+  nlp_job_status(
+    job_name: String!
+  ): NlpJobStatusOutput
+}
+
+type Query {
+  nlp_login(
+    username: String!
+    password: String!
+  ): NlpLoginOutput
+}
+
+type Query {
+  nlp_search(
+    search_string: String!
+    subreddits: String!
+    filter_keywords: String!
+    description: String!
+  ): NlpSearchOutput
+}
+
 type Mutation {
   register_new_user(
     username: String!
@@ -8,5 +40,31 @@ type Mutation {
 type RegisterUserOutput {
   id: bigint!
   username: String!
+}
+
+type NlpHelloWorldOutput {
+  message: String!
+}
+
+type NlpLoginOutput {
+  auth_token: String!
+}
+
+type NlpSearchOutput {
+  status: String
+  errors: String
+  job_name: String
+}
+
+type NlpJobStatusOutput {
+  job_name: String!
+}
+
+type NlpFinishedJobsOutput {
+  response: String!
+}
+
+type NlpFinishedJobOutput {
+  response: String!
 }
 
